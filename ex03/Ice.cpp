@@ -6,6 +6,7 @@ Ice::Ice(): AMateria("ice") {
 }
 
 Ice::Ice(const Ice &cpy): AMateria(cpy) {
+	mType = "ice";
 }
 
 Ice::~Ice() {

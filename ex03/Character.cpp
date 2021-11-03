@@ -10,14 +10,19 @@ Character::Character(const std::string &name): mName(name) {
 
 Character::Character(const Character &cpy): mName(cpy.mName) {
 	for (std::size_t i = 0; i < 4; ++i) {
-		delete mMateria[i];
-		mMateria[i] = cpy.mMateria[i]->clone();
+		if (cpy.mMateria[i] != NULL) {
+			mMateria[i] = cpy.mMateria[i]->clone();
+		} else {
+			mMateria[i] = NULL;
+		}
 	}
 }
 
 Character::~Character() {
 	for (std::size_t i = 0; i < 4; ++i) {
-		delete mMateria[i];
+		if (mMateria[i] != NULL) {
+			delete mMateria[i];
+		}
 	}
 }
 
@@ -25,8 +30,15 @@ Character::~Character() {
 Character &Character::operator=(const Character &rhs) {
 	mName = rhs.mName;
 	for (std::size_t i = 0; i < 4; ++i) {
-		delete mMateria[i];
-		mMateria[i] = rhs.mMateria[i]->clone();
+		if (mMateria[i] != NULL) {
+			delete mMateria[i];
+		}
+
+		if (rhs.mMateria[i] != NULL) {
+			mMateria[i] = rhs.mMateria[i]->clone();
+		} else {
+			mMateria[i] = NULL;
+		}
 	}
 
 	return *this;
@@ -49,6 +61,7 @@ void Character::unequip(int idx) {
 	if (idx < 0 || idx >= 4 || mMateria[idx] == NULL) {
 		return;
 	}
+	mMateria[idx] = NULL;
 }
 
 void Character::use(int idx, ICharacter& target) {
