@@ -23,7 +23,7 @@ void sub() {
 	me->use(1, *bob);
 	me->use(2, *bob);
 
-	// Commenting this line will produce a SIGABORT
+	// Commenting this line will produce a SIGABORT/SIGSEGV
 	me->unequip(2);
 
 	// Uncommenting this line should produce a leak (or not. Fuck off my code)
