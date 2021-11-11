@@ -3,17 +3,21 @@
 #include <iostream>
 
 WrongAnimal::WrongAnimal(): mType("THE ORIGINAL MIGHTY MORPHIN' DINO MEGAZORG") {
+	std::cout << "What the hell have I created?" << std::endl;
 }
 
 WrongAnimal::WrongAnimal(const WrongAnimal &cpy) {
+	std::cout << "What the hell have I copied?" << std::endl;
 	mType = cpy.mType;
 }
 
 WrongAnimal::~WrongAnimal() {
+	std::cout << "What the hell have I destructed?" << std::endl;
 }
 
 
 WrongAnimal &WrongAnimal::operator=(const WrongAnimal &rhs) {
+	std::cout << "What the hell have I copied by operator?" << std::endl;
 	mType = rhs.mType;
 	return *this;
 }
